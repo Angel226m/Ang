@@ -1,6 +1,10 @@
 import { Sparkle } from './decorative/Sparkle';
 
-export function Footer() {
+interface FooterProps {
+  onOpenModal?: (type: 'terms' | 'privacy' | 'cookies') => void;
+}
+
+export function Footer({ onOpenModal }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -109,17 +113,26 @@ export function Footer() {
       <div className="border-t border-white/10 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-center gap-3 text-center">
-            <a href="#productos" className="font-body text-xs text-white/60 hover:text-brand-pink-hot transition-colors">
+            <button
+              onClick={() => onOpenModal?.('terms')}
+              className="font-body text-xs text-white/60 hover:text-brand-pink-hot transition-colors cursor-pointer"
+            >
               Términos y Condiciones
-            </a>
+            </button>
             <span className="hidden md:inline text-white/20 text-xs">•</span>
-            <a href="#productos" className="font-body text-xs text-white/60 hover:text-brand-pink-hot transition-colors">
+            <button
+              onClick={() => onOpenModal?.('privacy')}
+              className="font-body text-xs text-white/60 hover:text-brand-pink-hot transition-colors cursor-pointer"
+            >
               Política de Privacidad
-            </a>
+            </button>
             <span className="hidden md:inline text-white/20 text-xs">•</span>
-            <a href="#productos" className="font-body text-xs text-white/60 hover:text-brand-pink-hot transition-colors">
+            <button
+              onClick={() => onOpenModal?.('cookies')}
+              className="font-body text-xs text-white/60 hover:text-brand-pink-hot transition-colors cursor-pointer"
+            >
               Política de Cookies
-            </a>
+            </button>
           </div>
         </div>
       </div>
